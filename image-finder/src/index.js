@@ -3,7 +3,6 @@ import refs from './js/refs';
 import apiService from './js/apiService';
 import galleryItem from './templates/gallery-item.hbs';
 
-
 refs.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     apiService.pageClear();
@@ -14,7 +13,7 @@ refs.searchForm.addEventListener('submit', e => {
         return refs.gallery.insertAdjacentHTML('beforeend', galleryItem(images));
       }
     });
-    apiService.request = searchValue;
+  apiService.request = searchValue;
   });
   
   refs.loadMore.addEventListener('click', e => {
@@ -26,8 +25,13 @@ refs.searchForm.addEventListener('submit', e => {
         return refs.gallery.insertAdjacentHTML('beforeend', galleryItem(images));
       }
     });
-    window.scrollTo({
-      top: document.documentElement.scrollHeight - 100,
-      behavior: 'smooth',
-    });
-  });
+    setTimeout(() => {
+     const srt = document.querySelector('body').scrollHeight
+      window.scrollTo({
+        top: srt,
+        behavior:'smooth'
+      });
+    }, 500);
+    
+  })
+ 
